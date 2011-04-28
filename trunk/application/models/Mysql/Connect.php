@@ -17,14 +17,15 @@ class Plus4_Mysql_Connect
 	private $resultsQuery;
 	private $errorMsg;
 	private $errorDebug;
+	private static $instance=null;
 	
 	/**
 	 * Constructor del objecto
 	 * @param configuration $config objecto con todos los parametros de la aplicación
 	 */
-	public function __construct($config)
+	private function __construct($config)
 	{
-		
+
 		// conexion al servidor
 		$this->conexDB = new mysqli($config->server, $config->user, $config->password,$config->db);
 		
@@ -35,11 +36,51 @@ class Plus4_Mysql_Connect
 		
 		// Establece utf8 para la codificacion de caracteres
 		$this->conexDB->query("SET NAMES 'utf8'");
-        
 
 		return true;	
 	}
+
+	/**
+	 * 
+	 * Funcion para el inicio de la base de datos
+	 * @param configuration $config objecto con todos los parametros de la aplicación
+	 */
+	public static function init($config)
+	{
+		self::$instance=new self($config);
+	}
+
+	/**
+	 * 
+	 * Obtiene la instacia de la base de datos (singleton)
+	 * @param configuration $config objecto con todos los parametros de la aplicación
+	 */
+	public static function getInstance($config=null)
+	{
+
+		if(!self::$instance && $config != null)
+			self::init($config);
+
+		return self::$instance;
+			
+	}
 	
+	
+	
+	/**
+	 * @return the $errorMsg
+	 */
+	public function getErrorMsg() {
+		return $this->errorMsg;
+	}
+
+	/**
+	 * @return the $errorDebug
+	 */
+	public function getErrorDebug() {
+		return $this->errorDebug;
+	}
+
 	public function serverInfo()
 	{
 		/* print server version */
@@ -62,7 +103,7 @@ class Plus4_Mysql_Connect
         // Si existen errores escribe los mensajes 
 		if (!$this->resultsQuery){
             $this->errorMsg='Erro o buscar ou engadir os datos';
-            $this->errorDebug=$this->conexBD->error.' '.$sql;
+            $this->errorDebug=$this->conexDB->error.' '.$sql;
 			return false;
 		}
         
