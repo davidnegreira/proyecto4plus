@@ -11,9 +11,9 @@ class Acl_mail_enviarEmail extends Acl_mail_abstractPHPMailer{
 					    $this->SMTPSecure = "ssl";                 // sets the prefix to the servier
 					    $this->Host       = "smtp.googlemail.com";      // sets GMAIL as the SMTP server
 					    $this->Port       = 465;                   // set the SMTP port for the GMAIL server
-					    $this->Username   = 'gruposvn2011';  // GMAIL username
+					    $this->Username   = 'gruposvn2011@gmail.com';  // GMAIL username
 					    $this->Password   = 'vigocapital';            // GMAIL password
-					    $this->AddReplyTo('gruposvn2011', 'argucias');
+					    $this->AddReplyTo('gruposvn2011@gmail.com', 'argucias');
 					    $this->From       = 'gruposvn2011@gmail.com';
 					    $this->FromName   = 'argucias';
 					    $this->Subject    = $tema;
