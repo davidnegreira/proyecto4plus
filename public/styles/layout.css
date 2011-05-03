@@ -1,0 +1,22 @@
+#cabecera
+{
+	padding-top:45px;
+	padding-bottom: 35px;
+
+}
+
+#cabecera h1
+{
+	color:white;
+}
+
+#pie
+{
+	background-color:gray;
+}
+
+body 
+{ 
+	background:white url(/assets/headerbar.png) left top repeat-x; 
+}	
+          

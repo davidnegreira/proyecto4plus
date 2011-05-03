@@ -1,9 +1,21 @@
 <?php
 
+/**
+ * 
+ * Clase encargada de poner en funcionamiento todo el sitio web
+ * 
+ * @copyright Copyright (c) 2011,David Negreira Ríos <br/>
+ * Creative Commons: Attribution-Noncommercial-Share Alike 3.0 Unported
+ * @version 1.0
+ * @author David Negreira Ríos
+ * 
+ */
+
 class Bootstrap
 {
 	public function __construct()
 	{
+		// Se registra la funcion que funcionará como autoload
 		spl_autoload_register(array($this, 'autoload'));
 	}
 
@@ -40,14 +52,17 @@ class Bootstrap
 		// Inicializa la conexion a la base de datos
 		Plus4_Mysql_Connect::init($config->sectionConfigs->database);
 		
-		$posts=new Plus4_Posts_CrudPost();
+		// Controller
+		include_once APPLICATION_PATH.'/controllers/PostController.php';
 		
-		$posts->getPosts();
+		$controller=new PostController();
+
+		ob_start();
+		$controller->selectPosts();
+		$content=ob_get_contents();
+		ob_end_clean();	
+
+		// Carga el layout
+		include_once APPLICATION_PATH."/layouts/layout.php";
 	}
 }
-
-
-
-
-
-

@@ -7,6 +7,7 @@
     <!-- Framework CSS -->
     <link rel="stylesheet" href="/styles/blueprint/screen.css" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="/styles/blueprint/print.css" type="text/css" media="print">
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" media="screen">
     <!--[if lt IE 8]><link rel="stylesheet" href="/styles/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
 
 </head>
@@ -17,13 +18,11 @@
 
 <!-- Contenedor Principal de la Pagina -->
 <div class="container">
-	<div class="span-24 last" style="background-color:blue">
-			<h1>Prueba del layout Blueprint</h1>
+	<div class="span-24 last" id="cabecera">
+			<h1>Proyecto 4 +</h1>
 	</div>
 
-	<div class="span-18" >
-		<p>Cuerpo izquierda...</p>
-		
+	<div class="span-18 colborder">
 		<p>		
 			<?php echo $content?>
 		</p>		
@@ -44,9 +43,9 @@
 		</div>
 	</div>
 
-	<div class="span-6 last" style="background-color:red;">
-		<div ">
-			<h3>Lateral</h3>
+	<div class="span-5 last" id="menu">
+		<div>
+			<h3>Menú</h3>
 			<ul>
 			<li><a>enlace1</a></li>
 			<li><a>enlace2</a></li>
@@ -54,7 +53,7 @@
 		</div>
 	</div>
 	
-	<div class="span-24 last" style="background-color:blue;">
+	<div class="span-24 last" id="pie">
 		<h2>Pie</h2>
 	</div>	
 </div> 
