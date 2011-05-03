@@ -10,11 +10,8 @@ class Plus4_Posts_CrudPost
 	
 	public function getPosts()
 	{
-		$arrResultados=$this->db->fetchOneArray("SELECT * FROM users");
-		
-		echo "<pre>";
-		print_r($arrResultados);
-		echo "</pre>"; 
+		//return $this->db->fetchOneArray("SELECT * FROM users");
+		return$this->db->fetchArray("SELECT * FROM posts");
 	}
 	
 	public function __destruct()
