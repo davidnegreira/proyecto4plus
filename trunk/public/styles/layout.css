@@ -1,8 +1,17 @@
-#cabecera
+#contenedor
 {
-	padding-top:45px;
-	padding-bottom: 35px;
 
+}
+
+#logo
+{
+	padding-top:70px;
+	padding-bottom: 75px;
+}
+
+#cab-imagenes
+{
+	padding-top:10px;	
 }
 
 #cabecera h1
@@ -10,13 +19,41 @@
 	color:white;
 }
 
+#cuerpo
+{
+	margin-bottom: -24px;
+    position: relative;
+	overflow:hidden;
+}
+
 #pie
 {
-	background-color:gray;
+	background-color:#ededed;
+}
+
+#pie_pagina
+{
+	background-color:#3f3f3f;
+	clear: both;
+    padding-top: 70px;
+    z-index: 1;
 }
 
 body 
 { 
-	background:white url(/assets/headerbar.png) left top repeat-x; 
-}	
+	background:white url(/assets/back.jpg) left top repeat-x; 
+}
+
+.border-left {
+	border-left: 1px solid #ddd;
+	margin-left: -1px;
+}
+
+.border-right {
+	border-right: 1px solid #ddd;
+	margin-right: -1px;
+}
+
+.contenido-izq {padding:1.5em;margin-bottom:1.5em}
+
           

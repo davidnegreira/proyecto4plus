@@ -6,7 +6,6 @@ defined('APPLICATION_PATH')
 // Añade el fichero de arraque de la aplicacion
 require_once APPLICATION_PATH."/Bootstrap.php";
 
-
 $boot=new Bootstrap();
 
 $boot->run();
