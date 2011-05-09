@@ -13,6 +13,10 @@
 
 class Bootstrap
 {
+	private $controller;
+	private $action;
+	
+	
 	public function __construct()
 	{
 		// Se registra la funcion que funcionará como autoload
@@ -44,18 +48,54 @@ class Bootstrap
 		$path.='.php';
 		include $path;
 	}
+	
+	private function setParams()
+	{
+		$params=explode("/",$_SERVER['REQUEST_URI']);
+		
+		if (count($params)>1){
+			$this->controller=$params[1];
+			
+			if (count($params)>2)
+			{
+				$this->action=$params[2];
+			}
+		}
+		
+		// Elimina el query string
+		if ($pos = strpos($this->controller, '?')) {
+			$this->controller = substr($this->controller, 0, $pos);
+		}
+		
+		// Elimina el query string
+		if ($pos = strpos($this->action, '?')) {
+			$this->action = substr($this->action, 0, $pos);
+		}		
+	}
 
 	public function run()
 	{
+		// Lee los parametros de inicio
 		$config=new Plus4_Ini_ReadIni(APPLICATION_PATH."/config/settings.ini", "development", true);
 		
 		// Inicializa la conexion a la base de datos
 		Plus4_Mysql_Connect::init($config->sectionConfigs->database);
 		
-		// Controller
-		include_once APPLICATION_PATH.'/controllers/PostController.php';
+		$this->setParams();
 		
-		$controller=new PostController();
+		switch ($this->controller)
+		{
+			case "":
+			case "posts":
+				// Controller
+				include_once APPLICATION_PATH.'/controllers/PostController.php';
+				$controller=new PostController();
+				break;
+			default:
+				echo "pagina no encontrada";
+				die();
+		}
+
 
 		ob_start();
 		$controller->selectPosts();
