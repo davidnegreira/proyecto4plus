@@ -70,7 +70,10 @@ class Bootstrap
 		// Elimina el query string
 		if ($pos = strpos($this->action, '?')) {
 			$this->action = substr($this->action, 0, $pos);
-		}		
+		}
+
+		// si se llama a index el controlador es vacio
+		if ($this->controller=="index.php") $this->controller="";
 	}
 
 	public function run()
@@ -83,24 +86,35 @@ class Bootstrap
 		
 		$this->setParams();
 		
+		$controller=null;		
+		
+		// Selecciona el controlador adecuado
 		switch ($this->controller)
 		{
-			case "":
 			case "posts":
 				// Controller
 				include_once APPLICATION_PATH.'/controllers/PostController.php';
 				$controller=new PostController();
 				break;
+			
+			case "":
+			case "home";
+				// Controller
+				include_once APPLICATION_PATH.'/controllers/HomeController.php';
+				$controller=new HomeController();
+				break;				
+				
 			default:
-				echo "pagina no encontrada";
-				die();
+				$content="<h1>Página no encontrada</h1>";
 		}
 
 
-		ob_start();
-		$controller->selectPosts();
-		$content=ob_get_contents();
-		ob_end_clean();	
+		if ($controller !== null){
+			ob_start();
+			$controller->show();
+			$content=ob_get_contents();
+			ob_end_clean();
+		}	
 
 		// Carga el layout
 		include_once APPLICATION_PATH."/layouts/layout.php";
