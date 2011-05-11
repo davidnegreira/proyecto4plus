@@ -66,6 +66,24 @@ body
 	margin-right: -1px;
 }
 
-.contenido-izq {padding:1.5em;margin-bottom:1.5em}
+.borde-sombra{
+	background-image:url(/assets/sombra.png);
+	background-position: left top;
+	background-repeat:no-repeat;
+	padding-left:20px;
+	min-height:200px;
+}
+
+.borde-sombra-der{
+	background-image:url(/assets/sombra.png);
+	background-position: right top;
+	background-repeat:no-repeat;
+	min-height:200px;
+}
+
+.contenido-izq {
+	padding-top:30px;
+	padding-left: 20px;
+}
 
           
